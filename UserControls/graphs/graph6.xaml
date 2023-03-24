@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="projet23_Station_météo_WPF.UserControls.graphs.graph6"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="400" Height="250" MinWidth="400" HorizontalAlignment="Left" VerticalAlignment="Top">
+    <Grid>
+        <Border x:Name="view" BorderBrush="#FFD6D6D6" BorderThickness="0,0,5,5" Margin="0" CornerRadius="20" Background="#FFEEEEEE">
+            <Grid>
+                <lvc:CartesianChart DisableAnimations="True" x:Name="chart" LegendLocation="Right" Margin="10,10,0,5" >
+                </lvc:CartesianChart>
+                <Grid x:Name="buttons" VerticalAlignment="Bottom" Margin="0,0,0,5" HorizontalAlignment="Center" Background="#FFEEEEEE" Width="667">
+                    <Button Content="Temperature" HorizontalAlignment="Left" Margin="0" Width="76" VerticalAlignment="Center" BorderBrush="#FF0060A2" Background="#FF0060A2"/>
+                    <Button Content="Humidité" HorizontalAlignment="Left" Margin="81,0,0,0" Width="55" VerticalAlignment="Center" BorderBrush="Red"  Background="Red"/>
+                    <Button Content="Vitesse du vent" HorizontalAlignment="Left" Margin="141,0,0,0" Width="86" VerticalAlignment="Center" BorderBrush="#FF00C527"  Background="#FF00C527"/>
+                    <Button Content="Pression atmospherique" HorizontalAlignment="Left" Margin="232,0,0,0" Width="134" VerticalAlignment="Center" BorderBrush="#FF666663"  Background="#FF666663"/>
+                    <Button Content="Pluviometrie" HorizontalAlignment="Left" Margin="371,0,0,0" Width="74" VerticalAlignment="Center" BorderBrush="#FF590084"  Background="#FF590084"/>
+                    <Button Content="Direction du vent" HorizontalAlignment="Left" Margin="450,0,0,0" Width="95" VerticalAlignment="Center" BorderBrush="#FFFF24FF"  Background="#FFFF24FF"/>
+                    <Button Content="Rayonnement solaire" HorizontalAlignment="Left" Margin="550,0,0,0" Width="117" VerticalAlignment="Center" BorderBrush="#FFFF7400"  Background="#FFFF7400"/>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

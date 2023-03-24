@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="projet23_Station_météo_WPF.UserControls.settingsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:projet23_Station_météo_WPF.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="411" d:DesignWidth="1200">
+    <Grid Background="#FFF9F6F7">
+        <Grid>
+            <Grid VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Left" Margin="30,10,0,0" TextWrapping="Wrap" Text="Général" VerticalAlignment="Top"/>
+                <Rectangle Height="1" Margin="100,20,30,0" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+
+                <Grid Margin="62,34,0,0" VerticalAlignment="Top" Height="36" Visibility="Visible" HorizontalAlignment="Left" Width="100">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Serveur IP" VerticalAlignment="Top"/>
+                    <TextBox x:Name="serverIp" Text="" VerticalAlignment="Bottom" LostKeyboardFocus="serverIp_TextChanged"/>
+                </Grid>
+                <Grid Margin="188,34,0,0" VerticalAlignment="Top" Height="36" Visibility="Visible" HorizontalAlignment="Left" Width="199">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="période de rafraîchissement(sec)" VerticalAlignment="Top"/>
+                    <TextBox x:Name="refreshTimer" Text="" VerticalAlignment="Bottom" LostKeyboardFocus="refreshTimer_TextChanged" PreviewTextInput="PreviewTextInput"/>
+                </Grid>
+            </Grid>
+            <Grid VerticalAlignment="Top" Margin="0,70,0,0">
+                <TextBlock HorizontalAlignment="Left" Margin="30,10,0,0" TextWrapping="Wrap" Text="Conversions" VerticalAlignment="Top"/>
+                <Rectangle Height="1" Margin="100,20,30,0" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+                <Grid Margin="62,34,0,0" Visibility="Visible" HorizontalAlignment="Left" Width="100" Height="100" VerticalAlignment="Top">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Temperature" VerticalAlignment="Top"/>
+                    <ListBox x:Name="unit1" Tag="unitTemp"  Margin="0,19,0,0">
+                        <CheckBox Content="°C" Checked="editUnit"/>
+                        <CheckBox Content="°F" Checked="editUnit"/>
+                        <CheckBox Content="K" Checked="editUnit"/>
+                    </ListBox>
+                </Grid>
+                <Grid Margin="190,34,0,0" Visibility="Visible" HorizontalAlignment="Left" Width="135" Height="100" VerticalAlignment="Top">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Humidité" VerticalAlignment="Top"/>
+                    <ListBox x:Name="unit2" Tag="unitHygro" Margin="0,19,0,0">
+                        <CheckBox Content="%"/>
+                        <CheckBox Content="g/m³"/>
+                        <CheckBox Content="Point de rosée(°C)"/>
+                    </ListBox>
+                </Grid>
+                <Grid Margin="354,34,0,0" Visibility="Visible" HorizontalAlignment="Left" Width="100" Height="100" VerticalAlignment="Top">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Vitesse du vent" VerticalAlignment="Top"/>
+                    <ListBox x:Name="unit3" Tag="unitVvent" Margin="0,19,0,0">
+                        <CheckBox Content="Km/h"/>
+                        <CheckBox Content="m/s"/>
+                        <CheckBox Content="mph"/>
+                        <CheckBox Content="nœuds(nd)"/>
+                    </ListBox>
+                </Grid>
+                <Grid Margin="62,138,0,0" Visibility="Visible" HorizontalAlignment="Left" Width="134" Height="100" VerticalAlignment="Top">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Pression atmospherique" VerticalAlignment="Top"/>
+                    <ListBox x:Name="unit4"  Tag="unitPresAtmo" Margin="0,19,0,0">
+                        <CheckBox Content="hPa"/>
+                        <!--
+                        <CheckBox Content="atm"/>
+                        <CheckBox Content="psi"/>
+                        <CheckBox Content="bar"/>
+                        -->
+                    </ListBox>
+                </Grid>
+                <Grid Margin="225,138,0,0" Visibility="Visible" HorizontalAlignment="Left" Width="100" Height="100" VerticalAlignment="Top">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="pluviométrie" VerticalAlignment="Top"/>
+                    <ListBox x:Name="unit5" Tag="unitPluv" Margin="0,19,0,0">
+                        <CheckBox Content="mm"/>
+                        <CheckBox Content="cm"/>
+                        <CheckBox Content="in"/>
+                        <CheckBox Content="L/m²"/>
+                    </ListBox>
+                </Grid>
+                <Grid Margin="354,138,0,0" Visibility="Visible" HorizontalAlignment="Left" Width="117" Height="100" VerticalAlignment="Top">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="rayonnement solaire" VerticalAlignment="Top"/>
+                    <ListBox x:Name="unit6" Tag="unitRaySol" Margin="0,19,0,0">
+                        <CheckBox Content="W/m²"/>
+                        <!--<CheckBox Content="kW/m²"/>
+                        <CheckBox Content="UV"/>-->
+                        <CheckBox Content="Btu/h.ft²"/>
+                    </ListBox>
+                </Grid>
+            </Grid>
+            <Grid x:Name="gridSeuils" VerticalAlignment="Top" Margin="0,308,0,0" Cursor="">
+                <TextBlock HorizontalAlignment="Left" Margin="30,10,0,0" TextWrapping="Wrap" Text="Seuils" VerticalAlignment="Top"/>
+                <Rectangle Height="1" Margin="100,20,30,0" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Vitesse du vent(Km/h)" VerticalAlignment="Top" Margin="108,35,0,0"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Temperature(°C)" VerticalAlignment="Top" Margin="234,34,0,0"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Pluviometrie(mm)" VerticalAlignment="Top" Margin="358,34,0,0"/>
+                <TextBox Tag="1;SeuilVitVent" LostKeyboardFocus="editSeuil_LostKeyboardFocus" PreviewTextInput="PreviewTextInput" x:Name="seuil1VitesseVent" Text="" VerticalAlignment="Top" Margin="108,56,0,0" HorizontalAlignment="Left" Width="100"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Rayonnement solaire(W/m²)" VerticalAlignment="Top" Margin="484,34,0,0"/>
+                <TextBox Tag="1;SeuilTemp" LostKeyboardFocus="editSeuil_LostKeyboardFocus" PreviewTextInput="PreviewTextInput" x:Name="seuil1Temperature" Text="" VerticalAlignment="Top" Margin="234,56,0,0" RenderTransformOrigin="0.487,0.612" Width="100" HorizontalAlignment="Left"/>
+                <TextBox Tag="1;SeuilPluvio" LostKeyboardFocus="editSeuil_LostKeyboardFocus" PreviewTextInput="PreviewTextInput" x:Name="seuil1Pluviometrie" Text="" VerticalAlignment="Top" Margin="358,56,0,0" Width="100" HorizontalAlignment="Left"/>
+                <TextBox Tag="1;SeuilRadSol" LostKeyboardFocus="editSeuil_LostKeyboardFocus" PreviewTextInput="PreviewTextInput" x:Name="seuil1UV" Text="" VerticalAlignment="Top" Margin="484,56,0,0" Width="100" HorizontalAlignment="Left"/>
+                <TextBlock HorizontalAlignment="Left" Margin="63,57,0,0" TextWrapping="Wrap" Text="seuil 1 :" VerticalAlignment="Top"/>
+                <TextBox Tag="2;SeuilVitVent" LostKeyboardFocus="editSeuil_LostKeyboardFocus" PreviewTextInput="PreviewTextInput" x:Name="seuil2VitesseVent" Text="" VerticalAlignment="Top" Margin="108,78,0,0" Width="100" HorizontalAlignment="Left"/>
+                <TextBox Tag="2;SeuilTemp" LostKeyboardFocus="editSeuil_LostKeyboardFocus" PreviewTextInput="PreviewTextInput" x:Name="seuil2Temperature" Text="" VerticalAlignment="Top" Margin="234,78,0,0" RenderTransformOrigin="0.487,0.612" Width="100" HorizontalAlignment="Left"/>
+                <TextBox Tag="2;SeuilPluvio" LostKeyboardFocus="editSeuil_LostKeyboardFocus" PreviewTextInput="PreviewTextInput" x:Name="seuil2Pluviometrie" Text="" VerticalAlignment="Top" Margin="358,78,0,0" Width="100" HorizontalAlignment="Left"/>
+                <TextBox Tag="2;SeuilRadSol" LostKeyboardFocus="editSeuil_LostKeyboardFocus" PreviewTextInput="PreviewTextInput" x:Name="seuil2UV" Text="" VerticalAlignment="Top" Margin="484,78,0,0" Width="100" HorizontalAlignment="Left"/>
+                <TextBlock HorizontalAlignment="Left" Margin="63,79,0,0" TextWrapping="Wrap" Text="seuil 2 :" VerticalAlignment="Top"/>
+            </Grid>
+            <local:infoBulle Tag="Les seuils sont automatiquement convertis en l'unité que vous avez choisie." HorizontalAlignment="Left" Height="18" Margin="67,318,0,0" VerticalAlignment="Top" Width="17"/>
+
+        </Grid>
+    </Grid>
+</UserControl>

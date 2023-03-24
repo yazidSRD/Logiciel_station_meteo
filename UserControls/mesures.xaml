@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="projet23_Station_météo_WPF.UserControls.mesures"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:projet23_Station_météo_WPF.UserControls.mesuresUi"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="750" Unloaded="dell">
+    <Grid>
+        <MediaElement x:Name="videoPlayer" Source="./videos/Soleil.mp4" IsMuted="True" MediaEnded="LoopVideo" LoadedBehavior="Manual" StretchDirection="UpOnly" Stretch="UniformToFill" />
+        <Grid Width="Auto" MaxWidth="1200" SizeChanged="uiRefesh" x:Name="Gui">
+            <Grid.Background>
+                <SolidColorBrush Color="#26FFFFFF" Opacity="1"/>
+            </Grid.Background>
+            <local:mesures1></local:mesures1>
+        </Grid>
+    </Grid>
+</UserControl>

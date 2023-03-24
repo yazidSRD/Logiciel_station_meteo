@@ -1,0 +1,51 @@
+﻿<Window x:Class="projet23_Station_météo_WPF.UserControls.profilPanels.modificationProfil"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:projet23_Station_météo_WPF.UserControls"
+        mc:Ignorable="d"
+        Title="modificationProfil" Background="#FFF9F6F7" Height="444" Width="320" ResizeMode="NoResize">
+    <!--Height="314" Width="320"-->
+    <Grid>
+        <Grid Margin="20,20,20,0" VerticalAlignment="Top" Height="35">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Nom" VerticalAlignment="Top"/>
+            <local:infoBulle Tag="- Uniquement des lettres et des espaces\n- Minimum 3 caractères\n- Maximum 50 caractères" HorizontalAlignment="Left" VerticalAlignment="Top" Width="17" Height="17" Margin="30,0,0,0"></local:infoBulle>
+            <TextBox x:Name="Nom" Text="" VerticalAlignment="Bottom"/>
+        </Grid>
+        <Grid Margin="20,65,20,0" VerticalAlignment="Top" Height="35">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Prenom" VerticalAlignment="Top"/>
+            <local:infoBulle Tag="- Uniquement des lettres et des espaces\n- Minimum 3 caractères\n- Maximum 50 caractères" HorizontalAlignment="Left" VerticalAlignment="Top" Width="17" Height="17" Margin="45,0,0,0"></local:infoBulle>
+            <TextBox x:Name="Prenom" Text="" VerticalAlignment="Bottom"/>
+        </Grid>
+        <Grid Margin="20,110,20,0" VerticalAlignment="Top" Height="35">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Tel" VerticalAlignment="Top"/>
+            <local:infoBulle Tag="- Uniquement des chiffres\n- 10 caractères" HorizontalAlignment="Left" VerticalAlignment="Top" Width="17" Height="17" Margin="20,0,0,0"></local:infoBulle>
+            <TextBox x:Name="Tel" Text="" VerticalAlignment="Bottom"/>
+        </Grid>
+        <CheckBox x:Name="checkPassWord" Content="modifier le mot de passe aussi" HorizontalAlignment="Left" Margin="20,158,0,0" VerticalAlignment="Top" Click="showPassWord"/>
+        <Grid x:Name="gridPassWord" Margin="20,180,20,0" VerticalAlignment="Top" Height="35" Visibility="Hidden">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Mot de passe" VerticalAlignment="Top"/>
+            <local:infoBulle Tag="- Au moins une lettre majuscule\n- Au moins une lettre minuscule\n- Au moins un chiffre\n- Minimum 8 caractères\n- Maximum 50 caractères" HorizontalAlignment="Left" VerticalAlignment="Top" Width="17" Height="17" Margin="75,0,0,0"></local:infoBulle>
+            <TextBox x:Name="Mdp" Text="" VerticalAlignment="Bottom"/>
+        </Grid>
+        <Grid x:Name="gridIdentifiant" Margin="20,225,20,0" VerticalAlignment="Top" Height="35" Visibility="Visible">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Identifiant" VerticalAlignment="Top"/>
+            <local:infoBulle Tag="- Uniquement des lettres, des chiffres et des tirets\n- Minimum 3 caractères\n- Maximum 50 caractères" HorizontalAlignment="Left" VerticalAlignment="Top" Width="17" Height="17" Margin="60,0,0,0"></local:infoBulle>
+            <TextBox x:Name="Identifiant" Text="" VerticalAlignment="Bottom"/>
+        </Grid>
+        <Grid x:Name="gridFonction" Margin="20,270,20,0" VerticalAlignment="Top" Height="35" Visibility="Visible">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Fonction" VerticalAlignment="Top"/>
+            <local:infoBulle Tag="- Uniquement des lettres et des espaces\n- Minimum 3 caractères\n- Maximum 50 caractères" HorizontalAlignment="Left" VerticalAlignment="Top" Width="17" Height="17" Margin="50,0,0,0"></local:infoBulle>
+            <TextBox x:Name="Fonction" Text="" VerticalAlignment="Bottom"/>
+        </Grid>
+        <Grid x:Name="gridDroit" Margin="20,310,20,0" VerticalAlignment="Top" Height="35" Visibility="Visible">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Droit" VerticalAlignment="Top"/>
+            <local:infoBulle Tag="- 0 = utilisateur\n- 1 = administrateur" HorizontalAlignment="Left" VerticalAlignment="Top" Width="17" Height="17" Margin="30,0,0,0"></local:infoBulle>
+            <TextBox x:Name="Droit" Text="" VerticalAlignment="Bottom"/>
+        </Grid>
+        <Button Content="sauvegarder" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" Width="70" Click="save"/>
+        <Button Content="annuler" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,100,20" Width="50" Click="annuler"/>
+        <Button x:Name="buttonSup" Content="supprimer" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,160,20" Width="65" Click="supprimer"/>
+    </Grid>
+</Window>

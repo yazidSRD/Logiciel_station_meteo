@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="projet23_Station_météo_WPF.UserControls.mesuresTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:projet23_Station_météo_WPF.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="750" Background="#FFF9F6F7">
+    <Grid Width="Auto" MaxWidth="1200">
+        <DataGrid x:Name="dataGrid" Margin="10,40,10,20" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="DateHeureReleve" Binding="{Binding Path=[DateHeureReleve]}" Width="*"/>
+                <DataGridTextColumn Header="Temperature" Binding="{Binding Path=[Temperature]}" Width="*"/>
+                <DataGridTextColumn Header="Hygrometrie" Binding="{Binding Path=[Hygrometrie]}" Width="*"/>
+                <DataGridTextColumn Header="VitesseVent" Binding="{Binding Path=[VitesseVent]}" Width="*"/>
+                <DataGridTextColumn Header="DirectionVent" Binding="{Binding Path=[DirectionVent]}" Width="*"/>
+                <DataGridTextColumn Header="PressionAtmospherique" Binding="{Binding Path=[PressionAtmospherique]}" Width="*"/>
+                <DataGridTextColumn Header="Pluviometre" Binding="{Binding Path=[Pluviometre]}" Width="*"/>
+                <DataGridTextColumn Header="RayonnementSolaire" Binding="{Binding Path=[RayonnementSolaire]}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="sql" Margin="165,10,140,0" TextWrapping="Wrap" Text="LIMIT 49" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,11,0,0" TextWrapping="Wrap" Text="SELECT * FROM relevemeteo" VerticalAlignment="Top"/>
+        <Button Content="recharger" HorizontalAlignment="Right" Margin="0,9,80,0" VerticalAlignment="Top" Click="Button_Click_Request"/>
+        <Button Content="télécharger" HorizontalAlignment="Right" Margin="0,9,10,0" VerticalAlignment="Top" Click="Button_Click_Download"/>
+    </Grid>
+</UserControl>

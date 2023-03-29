@@ -79,7 +79,7 @@ namespace projet23_Station_météo_WPF.ressources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à admin.
+        ///   Recherche une chaîne localisée semblable à .
         /// </summary>
         internal static string saveIdentifiant {
             get {
@@ -88,7 +88,7 @@ namespace projet23_Station_météo_WPF.ressources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à admin.
+        ///   Recherche une chaîne localisée semblable à .
         /// </summary>
         internal static string saveMdp {
             get {
@@ -133,7 +133,7 @@ namespace projet23_Station_météo_WPF.ressources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à ηr.
+        ///   Recherche une chaîne localisée semblable à %.
         /// </summary>
         internal static string unitHygro {
             get {
@@ -151,7 +151,7 @@ namespace projet23_Station_météo_WPF.ressources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Pa.
+        ///   Recherche une chaîne localisée semblable à hPa.
         /// </summary>
         internal static string unitPresAtmo {
             get {
@@ -169,7 +169,7 @@ namespace projet23_Station_météo_WPF.ressources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à K.
+        ///   Recherche une chaîne localisée semblable à °C.
         /// </summary>
         internal static string unitTemp {
             get {

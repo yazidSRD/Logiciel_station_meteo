@@ -117,6 +117,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Configs.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="UserControls\graphs\graph1.xaml.cs">
       <DependentUpon>graph1.xaml</DependentUpon>
@@ -327,6 +328,7 @@
     <EmbeddedResource Include="ressources\Configs.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Configs.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="projet23-Station météo WPF_TemporaryKey.pfx" />

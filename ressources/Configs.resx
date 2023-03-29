@@ -126,10 +126,10 @@
     <comment>sec</comment>
   </data>
   <data name="saveIdentifiant" xml:space="preserve">
-    <value>admin</value>
+    <value />
   </data>
   <data name="saveMdp" xml:space="preserve">
-    <value>admin</value>
+    <value />
   </data>
   <data name="serverIp" xml:space="preserve">
     <value>192.168.1.223</value>
@@ -147,19 +147,19 @@
     <value>°</value>
   </data>
   <data name="unitHygro" xml:space="preserve">
-    <value>ηr</value>
+    <value>%</value>
   </data>
   <data name="unitPluv" xml:space="preserve">
     <value>mm</value>
   </data>
   <data name="unitPresAtmo" xml:space="preserve">
-    <value>Pa</value>
+    <value>hPa</value>
   </data>
   <data name="unitRaySol" xml:space="preserve">
     <value>W/m²</value>
   </data>
   <data name="unitTemp" xml:space="preserve">
-    <value>K</value>
+    <value>°C</value>
   </data>
   <data name="unitVvent" xml:space="preserve">
     <value>Km/h</value>

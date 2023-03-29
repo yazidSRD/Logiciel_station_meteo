@@ -21,7 +21,7 @@ namespace projet23_Station_météo_WPF.UserControls
         {
             // requete avec sql dans le Header
             List<Dictionary<string, string>> jsonData = null;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/getValeurs");
             requestMessage.Headers.Add("sql", sql);
 
             HttpResponseMessage response;
@@ -81,9 +81,10 @@ namespace projet23_Station_météo_WPF.UserControls
         }
         public async Task<string> getDate(string minOrMax)
         {
+            //in progress
             List<Dictionary<string, string>> jsonData = null;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api");
-            requestMessage.Headers.Add("sql", minOrMax + "(DateHeureReleve) FROM relevemeteo");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/getDate");
+            requestMessage.Headers.Add("minOrMax", minOrMax);
 
             HttpResponseMessage response;
             try
@@ -113,7 +114,7 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<List<Dictionary<string, string>>> getCompte(string login, string password)
         {
             List<Dictionary<string, string>> jsonData = null;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/connexion");
             requestMessage.Headers.Add("login", login);
             requestMessage.Headers.Add("password", password);
 
@@ -130,10 +131,9 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<List<Dictionary<string, string>>> getAllCompte(string login, string password)
         {
             List<Dictionary<string, string>> jsonData = null;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/getComptes");
             requestMessage.Headers.Add("login", login);
             requestMessage.Headers.Add("password", password);
-            requestMessage.Headers.Add("allComptes", "1");
             HttpResponseMessage response = await client.SendAsync(requestMessage);
             if (response.IsSuccessStatusCode)
             {
@@ -145,11 +145,10 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<bool> editCompte(string login, string password, Dictionary<string, string> profil)
         {
             bool saved = false;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/editCompte");
             
             requestMessage.Headers.Add("login", login);
             requestMessage.Headers.Add("password", password);
-            requestMessage.Headers.Add("editCompte", "1");
             requestMessage.Headers.Add("ID", profil["ID"]);
             requestMessage.Headers.Add("Nom", profil["Nom"]);
             requestMessage.Headers.Add("Prenom", profil["Prenom"]);
@@ -173,11 +172,10 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<bool> newCompte(string login, string password, Dictionary<string, string> profil)
         {
             bool saved = false;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/newCompte");
 
             requestMessage.Headers.Add("login", login);
             requestMessage.Headers.Add("password", password);
-            requestMessage.Headers.Add("newCompte", "1");
             requestMessage.Headers.Add("Nom", profil["Nom"]);
             requestMessage.Headers.Add("Prenom", profil["Prenom"]);
             requestMessage.Headers.Add("Identifiant", profil["Identifiant"]);
@@ -200,11 +198,10 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<bool> deleteCompte(string login, string password, string id)
         {
             bool saved = false;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/deleteCompte");
 
             requestMessage.Headers.Add("login", login);
             requestMessage.Headers.Add("password", password);
-            requestMessage.Headers.Add("deleteCompte", "1");
             requestMessage.Headers.Add("ID", id);
 
             try
@@ -221,11 +218,10 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<bool> editSeuil(string login, string password, string niv, string target, int var)
         {
             bool saved = false;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/editSeuil");
 
             requestMessage.Headers.Add("login", login);
             requestMessage.Headers.Add("password", password);
-            requestMessage.Headers.Add("editSeuil", "1");
             requestMessage.Headers.Add("niv", niv);
             requestMessage.Headers.Add("target", target);
             requestMessage.Headers.Add("var", var.ToString());
@@ -244,9 +240,7 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<List<string>> getSeuils()
         {
             List<string> saved = null;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api");
-
-            requestMessage.Headers.Add("getSeuils", "1");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/getSeuils");
 
             try
             {

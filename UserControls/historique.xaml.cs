@@ -141,7 +141,7 @@ namespace projet23_Station_météo_WPF.UserControls
         }
         void dataSearch(string startDate, string endDate, int index)
         {
-            List<Dictionary<string, string>> jsonData = new Http().get("* FROM relevemeteo WHERE DateHeureReleve BETWEEN '" + startDate + "' AND '" + endDate +"'").Result;
+            List<Dictionary<string, string>> jsonData = new Http().get("WHERE DateHeureReleve BETWEEN '" + startDate + "' AND '" + endDate +"'").Result;
             if (jsonData == null) {
                 Dispatcher.BeginInvoke(new delegateMessageBox(() => {
                     System.Windows.Forms.MessageBox.Show("Impossible de se connecter au server.\n\nIl est possible que:\n - Vous ne soyez pas connecté\n - Que le serveur ne soit pas connecté\n\nSi le problème persiste, veuillez contacter un administrateur.",

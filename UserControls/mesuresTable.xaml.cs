@@ -46,7 +46,7 @@ namespace projet23_Station_météo_WPF.UserControls
         {
             try
             {
-                List<Dictionary<string, string>> jsonData = new Http().get("* FROM relevemeteo " + sqlText).Result;
+                List<Dictionary<string, string>> jsonData = new Http().get(sqlText).Result;
                 if (jsonData == null) {
                     Dispatcher.BeginInvoke(new delegateMessageBox(() => {
                         System.Windows.Forms.MessageBox.Show("Impossible de se connecter au server.\n\nIl est possible que:\n - Vous ne soyez pas connecté\n - Que le serveur ne soit pas connecté\n\nSi le problème persiste, veuillez contacter un administrateur.",

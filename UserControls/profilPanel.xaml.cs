@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using projet23_Station_météo_WPF.code;
 using projet23_Station_météo_WPF.UserControls.profilPanels;
+using System.Windows.Threading;
 
 namespace projet23_Station_météo_WPF.UserControls
 {
@@ -25,6 +26,7 @@ namespace projet23_Station_météo_WPF.UserControls
     public partial class profilPanel : UserControl
     {
         public delegate void refreshDelegate();
+        delegate void delegateMessageBox();
         public profilPanel()
         {
             InitializeComponent();

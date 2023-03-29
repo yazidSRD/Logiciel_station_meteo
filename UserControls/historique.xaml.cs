@@ -18,6 +18,8 @@ namespace projet23_Station_météo_WPF.UserControls
         DateTime maxDate;
         DateTime minDate;
         delegate void refreshDelegate();
+        delegate void delegateMessageBox();
+
         public historique()
         {
             InitializeComponent();
@@ -25,6 +27,15 @@ namespace projet23_Station_météo_WPF.UserControls
             {
                 string mindate = new Http().getDate("MIN").Result;
                 string maxdate = new Http().getDate("MAX").Result;
+                if (mindate == "" || maxdate == "")
+                {
+                    Dispatcher.BeginInvoke(new delegateMessageBox(() => {
+                        System.Windows.Forms.MessageBox.Show("Impossible de se connecter au server.\n\nIl est possible que:\n - Vous ne soyez pas connecté\n - Que le serveur ne soit pas connecté\n\nSi le problème persiste, veuillez contacter un administrateur.",
+                        "Connexion erreur",
+                        System.Windows.Forms.MessageBoxButtons.OK,
+                        System.Windows.Forms.MessageBoxIcon.Error);
+                    }), DispatcherPriority.Render);
+                }
 
                 try
                 {
@@ -131,7 +142,15 @@ namespace projet23_Station_météo_WPF.UserControls
         void dataSearch(string startDate, string endDate, int index)
         {
             List<Dictionary<string, string>> jsonData = new Http().get("* FROM relevemeteo WHERE DateHeureReleve BETWEEN '" + startDate + "' AND '" + endDate +"'").Result;
-            if (jsonData == null) return;
+            if (jsonData == null) {
+                Dispatcher.BeginInvoke(new delegateMessageBox(() => {
+                    System.Windows.Forms.MessageBox.Show("Impossible de se connecter au server.\n\nIl est possible que:\n - Vous ne soyez pas connecté\n - Que le serveur ne soit pas connecté\n\nSi le problème persiste, veuillez contacter un administrateur.",
+                    "Connexion erreur",
+                    System.Windows.Forms.MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBoxIcon.Error);
+                }), DispatcherPriority.Render); 
+                return;
+            };
 
             Dictionary<string, List<Int32>> listData = new Dictionary<string, List<Int32>>()
                 {
@@ -150,10 +169,10 @@ namespace projet23_Station_météo_WPF.UserControls
             {
                 if (jsonData.Count > 432)
                 {
-                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTETION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTENTION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTETION", MessageBoxButtons.OK);
+                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTENTION", MessageBoxButtons.OK);
                     }
                     else
                     {
@@ -173,10 +192,10 @@ namespace projet23_Station_météo_WPF.UserControls
             {
                 if (jsonData.Count > 17520)
                 {
-                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTETION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTENTION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTETION", MessageBoxButtons.OK);
+                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTENTION", MessageBoxButtons.OK);
                     }
                     else
                     {
@@ -224,10 +243,10 @@ namespace projet23_Station_météo_WPF.UserControls
             {
                 if (jsonData.Count > 17520)
                 {
-                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTETION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTENTION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTETION", MessageBoxButtons.OK);
+                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTENTION", MessageBoxButtons.OK);
                     }
                     else
                     {
@@ -278,10 +297,10 @@ namespace projet23_Station_météo_WPF.UserControls
             {
                 if (jsonData.Count > 17520)
                 {
-                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTETION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTENTION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTETION", MessageBoxButtons.OK);
+                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTENTION", MessageBoxButtons.OK);
                     }
                     else
                     {
@@ -332,10 +351,10 @@ namespace projet23_Station_météo_WPF.UserControls
             {
                 if (jsonData.Count > 525600)
                 {
-                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTETION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTENTION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTETION", MessageBoxButtons.OK);
+                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTENTION", MessageBoxButtons.OK);
                     }
                     else
                     {
@@ -383,10 +402,10 @@ namespace projet23_Station_météo_WPF.UserControls
             {
                 if (jsonData.Count > 525600)
                 {
-                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTETION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTENTION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTETION", MessageBoxButtons.OK);
+                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTENTION", MessageBoxButtons.OK);
                     }
                     else
                     {
@@ -437,10 +456,10 @@ namespace projet23_Station_météo_WPF.UserControls
             {
                 if (jsonData.Count > 525600)
                 {
-                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTETION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTENTION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTETION", MessageBoxButtons.OK);
+                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTENTION", MessageBoxButtons.OK);
                     }
                     else
                     {
@@ -491,10 +510,10 @@ namespace projet23_Station_météo_WPF.UserControls
             {
                 if (jsonData.Count > 6307200)
                 {
-                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTETION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTENTION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTETION", MessageBoxButtons.OK);
+                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTENTION", MessageBoxButtons.OK);
                     }
                     else
                     {
@@ -542,10 +561,10 @@ namespace projet23_Station_météo_WPF.UserControls
             {
                 if (jsonData.Count > 6307200)
                 {
-                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTETION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTENTION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTETION", MessageBoxButtons.OK);
+                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTENTION", MessageBoxButtons.OK);
                     }
                     else
                     {
@@ -596,10 +615,10 @@ namespace projet23_Station_météo_WPF.UserControls
             {
                 if (jsonData.Count > 6307200)
                 {
-                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTETION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = System.Windows.Forms.MessageBox.Show("Vous sélectionnez beaucoup de données(" + jsonData.Count + "), il peut il y avoir de forts ralentissments.\nÉtês-vous sûr de vouloir continuer?", "ATTENTION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTETION", MessageBoxButtons.OK);
+                        System.Windows.Forms.MessageBox.Show("À vos risques et périls.", "ATTENTION", MessageBoxButtons.OK);
                     }
                     else
                     {

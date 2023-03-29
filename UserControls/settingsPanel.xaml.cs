@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace projet23_Station_météo_WPF.UserControls
 {
@@ -24,6 +25,7 @@ namespace projet23_Station_météo_WPF.UserControls
     public partial class settingsPanel : UserControl
     {
         private static readonly Regex _regex = new Regex("[^0-9]+"); //regex that matches disallowed text
+        delegate void delegateMessageBox();
 
         public settingsPanel()
         {
@@ -46,6 +48,15 @@ namespace projet23_Station_météo_WPF.UserControls
                     App.Current.Properties["seuilLvl2"] = jsonData[1];
                     await new configModifier().edit("seuilLvl1", jsonData[0]);
                     await new configModifier().edit("seuilLvl2", jsonData[1]);
+                } else
+                {
+                    Dispatcher.BeginInvoke(new delegateMessageBox(() => {
+                        System.Windows.Forms.MessageBox.Show("dddImpossible de se connecter au server.\n\nIl est possible que:\n - Vous ne soyez pas connecté\n - Que le serveur ne soit pas connecté\n\nSi le problème persiste, veuillez contacter un administrateur.",
+                        "Connexion erreur",
+                        System.Windows.Forms.MessageBoxButtons.OK,
+                        System.Windows.Forms.MessageBoxIcon.Error);
+                    }), DispatcherPriority.Render);
+
                 }
             }).Start();
             

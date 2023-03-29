@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace projet23_Station_météo_WPF.UserControls
 {
@@ -14,7 +15,8 @@ namespace projet23_Station_météo_WPF.UserControls
     {
         Thread autoRefreshTh;
         dynamic mesureUi;
-        
+        delegate void delegateMessageBox();
+
         public mesures()
         {
             InitializeComponent();
@@ -41,7 +43,15 @@ namespace projet23_Station_météo_WPF.UserControls
             string yesterdayFormatted = yesterday.ToString("yyyy-MM-dd HH:mm");
 
             List<Dictionary<string, string>> jsonData = new Http().get("* FROM relevemeteo WHERE DateHeureReleve > '" + yesterdayFormatted + "'").Result;
-            if (jsonData == null) return;
+            if (jsonData == null) {
+                Dispatcher.BeginInvoke(new delegateMessageBox(() => {
+                    System.Windows.Forms.MessageBox.Show("Impossible de se connecter au server.\n\nIl est possible que:\n - Vous ne soyez pas connecté\n - Que le serveur ne soit pas connecté\n\nSi le problème persiste, veuillez contacter un administrateur.",
+                    "Connexion erreur",
+                    System.Windows.Forms.MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBoxIcon.Error);
+                }), DispatcherPriority.Render);
+                return;
+            };
 
             Dictionary<string, List<Int32>> listD = new Dictionary<string, List<Int32>>()
             {

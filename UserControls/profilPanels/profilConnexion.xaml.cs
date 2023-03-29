@@ -25,6 +25,7 @@ namespace projet23_Station_météo_WPF.UserControls.profilPanels
     {
         private bool connexionInProgress = false;
         private bool stayConnected = false;
+        delegate void delegateMessageBox();
 
         public profilConnexion()
         {
@@ -84,8 +85,15 @@ namespace projet23_Station_météo_WPF.UserControls.profilPanels
             {
                 List<Dictionary<string, string>> jsonData = new Http().getCompte(login, password).Result;
 
-                if (jsonData == null || jsonData.Count == 0) 
+                if (jsonData == null || jsonData.Count == 0)
                 {
+                    Dispatcher.BeginInvoke(new delegateMessageBox(() => {
+                        System.Windows.Forms.MessageBox.Show("Impossible de se connecter au server.\n\nIl est possible que:\n - Vous ne soyez pas connecté\n - Que le serveur ne soit pas connecté\n - Que l'identifiant ou le mot de passe correspondent pas\n\nSi le problème persiste, veuillez contacter un administrateur.",
+                        "Connexion erreur",
+                        System.Windows.Forms.MessageBoxButtons.OK,
+                        System.Windows.Forms.MessageBoxIcon.Error);
+                    }), DispatcherPriority.Render);
+
                     connexionInProgress = false;
                     return;
                 }

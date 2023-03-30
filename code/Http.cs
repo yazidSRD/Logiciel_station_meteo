@@ -254,5 +254,23 @@ namespace projet23_Station_météo_WPF.UserControls
             }
             catch (Exception ex) { return saved; }
         }
+
+        public async Task<List<Dictionary<string, string>>> getPrevisions()
+        {
+            List<Dictionary<string, string>> saved = null;
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/getPrevisions");
+
+            try
+            {
+                HttpResponseMessage response = await client.SendAsync(requestMessage);
+                if (response.IsSuccessStatusCode)
+                {
+                    string stringData = await response.Content.ReadAsStringAsync();
+                    saved = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(stringData); ;
+                }
+                return saved;
+            }
+            catch (Exception ex) { return saved; }
+        }
     }
 }

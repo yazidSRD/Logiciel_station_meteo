@@ -8,7 +8,7 @@
              d:DesignHeight="680" d:DesignWidth="1200" MinHeight="680" MinWidth="1200">
     <Grid HorizontalAlignment="Center" Width="1200">
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Height="150" Margin="16,20,0,0" Width="377">
-            <Image HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="150" Source="/images/weather1.png"/>
+            <Image x:Name="illustration" HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="150"/>
             <TextBlock HorizontalAlignment="Left" Margin="161,15,0,0" TextWrapping="Wrap" Text="jardin du lycée HENRI LORITZ" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
         </Grid>
         <local:graph1 x:Name="controlTemp" Margin="12,184,0,0"/>

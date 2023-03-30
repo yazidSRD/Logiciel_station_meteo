@@ -11,6 +11,8 @@ namespace projet23_Station_météo_WPF.UserControls.mesuresUi
     public partial class mesures10 : UserControl
     {
         Thread refreshUiTh;
+        delegate void illustrationDelegate();
+        string urlIllustration;
 
         public mesures10()
         {
@@ -30,8 +32,22 @@ namespace projet23_Station_météo_WPF.UserControls.mesuresUi
             controlPluviometre2.graph.setInfo("pluviometre", ((string)App.Current.Properties["unitPluv"]), "images/icons/pluviometrie.png", 49);
             controlTemp2.graph.setInfo("temperature", ((string)App.Current.Properties["unitTemp"]), "images/icons/temperature0.png", 49);
         }
+        public void refreshIllustration()
+        {
+            System.Windows.Media.Imaging.BitmapImage logo = new System.Windows.Media.Imaging.BitmapImage();
+            logo.BeginInit();
+            logo.UriSource = new Uri("https://www.weatherbit.io/static/img/icons/" + urlIllustration + ".png");
+            logo.EndInit();
+
+            illustration.Source = logo;
+        }
         public void refreshData(Dictionary<string, List<Int32>> data, List<string> date)
         {
+            List<Dictionary<string, string>> previsions = new Http().getPrevisions().Result;
+            urlIllustration = null;
+            urlIllustration = previsions[0]["icon"];
+            if (urlIllustration != null) Dispatcher.BeginInvoke(new illustrationDelegate(refreshIllustration), System.Windows.Threading.DispatcherPriority.Render);
+
             Dictionary<string, List<dynamic>> listV = new Dictionary<string, List<dynamic>>()
             {
                 {"Temperature", new List<dynamic>() { controlTemp, controlTemp2}},

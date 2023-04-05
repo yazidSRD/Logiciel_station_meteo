@@ -45,7 +45,10 @@
     if ($perm >= 1) $sql .= " Nom = '".$Nom."',";
     if ($perm >= 1) $sql .= " Prenom = '".$Prenom."',";
     if ($perm >= 2) $sql .= " Identifiant = '".$Identifiant."',";
-    if (array_key_exists("Mdp",getallheaders()) && $perm >= 1) $sql .= " Mdp = '".getallheaders()["Mdp"]."',";
+    if (array_key_exists("Mdp",getallheaders()) && $perm >= 1) {
+		$Mdp = hash("sha256", getallheaders()["Mdp"]);
+		$sql .= " Mdp = '".$Mdp."',";
+	}
     if ($perm >= 1) $sql .= " Tel = ".$Tel.",";
     if ($perm >= 2) $sql .= " Fonction = '".$Fonction."',";
     if ($perm >= 2) $sql .= " Droit = '".$Droit."',";

@@ -15,6 +15,7 @@
     $Prenom = getallheaders()["Prenom"];
     $Identifiant = getallheaders()["Identifiant"];
     $Mdp = getallheaders()["Mdp"];
+    $Mdp = hash("sha256", $Mdp);
     $Tel = getallheaders()["Tel"];
     $Fonction = getallheaders()["Fonction"];
     $Droit = getallheaders()["Droit"];

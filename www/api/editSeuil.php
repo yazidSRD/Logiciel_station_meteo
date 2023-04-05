@@ -7,6 +7,7 @@
 
     $login = getallheaders()["login"];
     $password = getallheaders()["password"];
+    $password = hash("sha256", $password);
     $niv = getallheaders()["niv"];
     $target = getallheaders()["target"];
     $var = getallheaders()["var"];

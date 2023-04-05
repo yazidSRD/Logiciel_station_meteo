@@ -11,6 +11,7 @@
 
     $login = getallheaders()["login"];
     $password = getallheaders()["password"];
+    $password = hash("sha256", $password);
     $Nom = getallheaders()["Nom"];
     $Prenom = getallheaders()["Prenom"];
     $Identifiant = getallheaders()["Identifiant"];

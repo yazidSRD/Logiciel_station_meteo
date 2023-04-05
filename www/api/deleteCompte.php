@@ -5,6 +5,7 @@
 
     $login = getallheaders()["login"];
     $password = getallheaders()["password"];
+    $password = hash("sha256", $password);
     $id = getallheaders()["ID"];
 
     include "../php/bddConnexion.php";

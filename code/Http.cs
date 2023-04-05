@@ -111,9 +111,9 @@ namespace projet23_Station_météo_WPF.UserControls
                 return "";
             }
         }
-        public async Task<List<Dictionary<string, string>>> getCompte(string login, string password)
+        public async Task<Dictionary<string, string>> getCompte(string login, string password)
         {
-            List<Dictionary<string, string>> jsonData = null;
+            Dictionary<string, string> jsonData = null;
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/connexion");
             requestMessage.Headers.Add("login", login);
             requestMessage.Headers.Add("password", password);
@@ -123,7 +123,7 @@ namespace projet23_Station_météo_WPF.UserControls
                 HttpResponseMessage response = await client.SendAsync(requestMessage); if (response.IsSuccessStatusCode)
                 {
                     string stringData = await response.Content.ReadAsStringAsync();
-                    jsonData = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(stringData);
+                    jsonData = JsonConvert.DeserializeObject<Dictionary<string, string>>(stringData);
                 }
                 return jsonData;
             } catch (Exception ex) { return jsonData; }

@@ -83,9 +83,9 @@ namespace projet23_Station_météo_WPF.UserControls.profilPanels
         {
             try
             {
-                List<Dictionary<string, string>> jsonData = new Http().getCompte(login, password).Result;
+                Dictionary<string, string> jsonData = new Http().getCompte(login, password).Result;
 
-                if (jsonData == null || jsonData.Count == 0)
+                if (jsonData == null)
                 {
                     Dispatcher.BeginInvoke(new delegateMessageBox(() => {
                         System.Windows.Forms.MessageBox.Show("Impossible de se connecter au server.\n\nIl est possible que:\n - Vous ne soyez pas connecté\n - Que le serveur ne soit pas connecté\n - Que l'identifiant ou le mot de passe correspondent pas\n\nSi le problème persiste, veuillez contacter un administrateur.",
@@ -98,9 +98,9 @@ namespace projet23_Station_météo_WPF.UserControls.profilPanels
                     return;
                 }
 
-                App.Current.Properties["Identifiant"] = jsonData[0]["Identifiant"];
+                App.Current.Properties["Identifiant"] = jsonData["Identifiant"];
                 App.Current.Properties["Mdp"] = password;
-
+                
                 if (this.stayConnected == true)
                 {
                     new Thread(async () =>

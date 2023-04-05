@@ -38,26 +38,26 @@ namespace projet23_Station_météo_WPF.UserControls
             ((Grid)this.Content).Children.Clear();
             if (App.Current.Properties["Identifiant"] != null)
             {
-                List<Dictionary<string, string>> jsonData = await new Http().getCompte((string)App.Current.Properties["Identifiant"], (string)App.Current.Properties["Mdp"]);
+                Dictionary<string, string> jsonData = await new Http().getCompte((string)App.Current.Properties["Identifiant"], (string)App.Current.Properties["Mdp"]);
 
-                if (jsonData == null || jsonData.Count == 0)
+                if (jsonData == null)
                 {
                     App.Current.Properties["Identifiant"] = null;
                     refresh();
                     return;
                 }
 
-                App.Current.Properties["ID"] = jsonData[0]["ID"];
-                App.Current.Properties["Nom"] = jsonData[0]["Nom"];
-                App.Current.Properties["Prenom"] = jsonData[0]["Prenom"];
-                App.Current.Properties["Tel"] = jsonData[0]["Tel"];
-                App.Current.Properties["Fonction"] = jsonData[0]["Fonction"];
-                App.Current.Properties["Droit"] = jsonData[0]["Droit"];
+                App.Current.Properties["ID"] = jsonData["ID"];
+                App.Current.Properties["Nom"] = jsonData["Nom"];
+                App.Current.Properties["Prenom"] = jsonData["Prenom"];
+                App.Current.Properties["Tel"] = jsonData["Tel"];
+                App.Current.Properties["Fonction"] = jsonData["Fonction"];
+                App.Current.Properties["Droit"] = jsonData["Droit"];
 
                 ((Grid)this.Content).Children.Add(new panelConnected());
             } else if (((string)App.Current.Properties["saveIdentifiant"]) != "")
             {
-                List<Dictionary<string, string>> jsonData = await new Http().getCompte(((string)App.Current.Properties["saveIdentifiant"]), ((string)App.Current.Properties["saveMdp"]));
+                Dictionary<string, string> jsonData = await new Http().getCompte(((string)App.Current.Properties["saveIdentifiant"]), ((string)App.Current.Properties["saveMdp"]));
 
                 if (jsonData == null || jsonData.Count == 0)
                 {
@@ -70,13 +70,13 @@ namespace projet23_Station_météo_WPF.UserControls
                     return;
                 }
 
-                App.Current.Properties["ID"] = jsonData[0]["ID"];
-                App.Current.Properties["Nom"] = jsonData[0]["Nom"];
-                App.Current.Properties["Prenom"] = jsonData[0]["Prenom"];
-                App.Current.Properties["Identifiant"] = jsonData[0]["Identifiant"];
-                App.Current.Properties["Tel"] = jsonData[0]["Tel"];
-                App.Current.Properties["Fonction"] = jsonData[0]["Fonction"];
-                App.Current.Properties["Droit"] = jsonData[0]["Droit"];
+                App.Current.Properties["ID"] = jsonData["ID"];
+                App.Current.Properties["Nom"] = jsonData["Nom"];
+                App.Current.Properties["Prenom"] = jsonData["Prenom"];
+                App.Current.Properties["Identifiant"] = jsonData["Identifiant"];
+                App.Current.Properties["Tel"] = jsonData["Tel"];
+                App.Current.Properties["Fonction"] = jsonData["Fonction"];
+                App.Current.Properties["Droit"] = jsonData["Droit"];
                 App.Current.Properties["Mdp"] = ((string)App.Current.Properties["saveMdp"]);
 
                 ((Grid)this.Content).Children.Add(new panelConnected());

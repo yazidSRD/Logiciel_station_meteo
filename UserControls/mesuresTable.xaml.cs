@@ -20,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using projet23_Station_météo_WPF.code;
 
 namespace projet23_Station_météo_WPF.UserControls
 {
@@ -30,6 +31,7 @@ namespace projet23_Station_météo_WPF.UserControls
     {
         public delegate void refreshDelegate();
         delegate void delegateMessageBox();
+        Thread threadDownloadInToXML;
         public mesuresTable()
         {
             InitializeComponent();
@@ -78,44 +80,58 @@ namespace projet23_Station_météo_WPF.UserControls
             saveFileDialog.Filter = "langage de balisage extensible (*.xml)|*.xml";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                using (StreamWriter sw = File.CreateText(saveFileDialog.FileName))
-                {
-                    string contenu = "<?xml version='1.0' encoding='UTF-8'?>\n";
-
-                    contenu += "<mesures>\n";
-                    sw.Write(contenu);
-                    
-                    int total = 0;
-                    int x = 0;
-                    contenu = "";
-                    foreach (Dictionary<string, string> item in dataGrid.Items)
-                    {
-                        if (x++>200)
-                        {
-                            sw.Write(contenu);
-                            contenu = "";
-                        }
-                        Console.WriteLine(total++ + "/" + dataGrid.Items.Count);
-                        contenu += "\t<mesure>\n";
-                        contenu += "\t\t<DateHeureReleve>" + item["DateHeureReleve"] + "</DateHeureReleve>\n";
-                        contenu += "\t\t<Temperature>" + item["Temperature"] + "</Temperature>\n";
-                        contenu += "\t\t<Hygrometrie>" + item["Hygrometrie"] + "</Hygrometrie>\n";
-                        contenu += "\t\t<VitesseVent>" + item["VitesseVent"] + "</VitesseVent>\n";
-                        contenu += "\t\t<DirectionVent>" + item["DirectionVent"] + "</DirectionVent>\n";
-                        contenu += "\t\t<PressionAtmospherique>" + item["PressionAtmospherique"] + "</PressionAtmospherique>\n";
-                        contenu += "\t\t<Pluviometre>" + item["Pluviometre"] + "</Pluviometre>\n";
-                        contenu += "\t\t<RayonnementSolaire>" + item["RayonnementSolaire"] + "</RayonnementSolaire>\n";
-                        contenu += "\t</mesure>\n";
-                    }
-                    if (x!=0) sw.Write(contenu);
-
-                    contenu = "</mesures>";
-                    sw.Write(contenu);
-                }
-
-                Console.WriteLine("Le fichier texte a été créé avec succès et enregistré à l'emplacement suivant : " + saveFileDialog.FileName);
+                threadDownloadInToXML = new Thread(new ParameterizedThreadStart(downloadInToXML));
+                threadDownloadInToXML.Start(saveFileDialog.FileName);
             }
-            else return;
+        }
+        void downloadInToXML(object path)
+        {
+            loadingBar.start();
+            Thread.Sleep(100);
+            using (StreamWriter sw = File.CreateText((string)path))
+            {
+                string contenu = "<?xml version='1.0' encoding='UTF-8'?>\n";
+
+                contenu += "<mesures>\n";
+                sw.Write(contenu);
+
+                int total = 0;
+                int last = 0;
+                int x = 0;
+                contenu = "";
+                foreach (Dictionary<string, string> item in dataGrid.Items)
+                {
+                    if (++x > 1)
+                    {
+                        sw.Write(contenu);
+                        contenu = "";
+                        x = 0;
+                    }
+                    total++;
+                    if ((total*100/dataGrid.Items.Count) - last >= 5)
+                    {
+                        last = (int)(total * 100 / dataGrid.Items.Count);
+                        loadingBar.refresh(last);
+                    }
+                    contenu += "\t<mesure>\n";
+                    contenu += "\t\t<DateHeureReleve>" + item["DateHeureReleve"] + "</DateHeureReleve>\n";
+                    contenu += "\t\t<Temperature>" + item["Temperature"] + "</Temperature>\n";
+                    contenu += "\t\t<Hygrometrie>" + item["Hygrometrie"] + "</Hygrometrie>\n";
+                    contenu += "\t\t<VitesseVent>" + item["VitesseVent"] + "</VitesseVent>\n";
+                    contenu += "\t\t<DirectionVent>" + item["DirectionVent"] + "</DirectionVent>\n";
+                    contenu += "\t\t<PressionAtmospherique>" + item["PressionAtmospherique"] + "</PressionAtmospherique>\n";
+                    contenu += "\t\t<Pluviometre>" + item["Pluviometre"] + "</Pluviometre>\n";
+                    contenu += "\t\t<RayonnementSolaire>" + item["RayonnementSolaire"] + "</RayonnementSolaire>\n";
+                    contenu += "\t</mesure>\n";
+                }
+                if (x != 0) sw.Write(contenu);
+
+                contenu = "</mesures>";
+                sw.Write(contenu);
+            }
+
+            //Console.WriteLine("Le fichier texte a été créé avec succès et enregistré à l'emplacement suivant :\n" + (string)path);
+            loadingBar.stop();
         }
     }
 }

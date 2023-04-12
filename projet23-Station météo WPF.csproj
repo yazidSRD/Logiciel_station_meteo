@@ -111,6 +111,7 @@
     <Compile Include="code\configModifier.cs" />
     <Compile Include="code\graph.cs" />
     <Compile Include="code\Http.cs" />
+    <Compile Include="code\loadingBar.cs" />
     <Compile Include="code\Mysql.cs" />
     <Compile Include="code\unitConversion.cs" />
     <Compile Include="ressources\Configs.Designer.cs">

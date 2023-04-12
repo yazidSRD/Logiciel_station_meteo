@@ -16,6 +16,7 @@ namespace projet23_Station_météo_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        public delegate void delegateLoadingUi();
         bool disabledButtonOpenMenu = false;
         bool menuOpen = false;
         //public Serveur serveur;
@@ -23,6 +24,7 @@ namespace projet23_Station_météo_WPF
         public MainWindow()
         {
             InitializeComponent();
+            loadingBar.mainWindow = this;
             new configModifier().load();
             WindowView.Children.Add(new mesures());
         }

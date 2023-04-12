@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using projet23_Station_météo_WPF.code;
 
 namespace projet23_Station_météo_WPF.UserControls
 {
@@ -39,6 +40,7 @@ namespace projet23_Station_météo_WPF.UserControls
         }
         public void refreshData()
         {
+            loadingBar.start(false, true);
             DateTime yesterday = DateTime.Now.AddDays(-1);
             string yesterdayFormatted = yesterday.ToString("yyyy-MM-dd HH:mm");
 
@@ -77,6 +79,7 @@ namespace projet23_Station_météo_WPF.UserControls
             }
 
             mesureUi.refreshData(listD, listDate);
+            loadingBar.stop();
         }
         private void uiRefesh(object sender, SizeChangedEventArgs e)
         {

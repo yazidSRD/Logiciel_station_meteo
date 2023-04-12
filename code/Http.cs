@@ -31,8 +31,24 @@ namespace projet23_Station_météo_WPF.UserControls
                 // conversion de string to Json
                 if (response.IsSuccessStatusCode)
                 {
-                    string stringData = await response.Content.ReadAsStringAsync();
-                    jsonData = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(stringData);
+                    var totalBytes = response.Content.Headers.ContentLength;
+                    var bytesRead = 0L;
+
+                    using (var stream = await response.Content.ReadAsStreamAsync())
+                    {
+                        var buffer = new byte[4096];
+                        var read = 0;
+
+                        while ((read = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                        {
+                            bytesRead += read;
+                            var progress = (int)((double)bytesRead / (double)totalBytes * 100.0);
+                            //Console.WriteLine($"Progress: {progress}%");
+                        }
+
+                        string stringData = await response.Content.ReadAsStringAsync();
+                        jsonData = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(stringData);
+                    }
                 }
                 else
                 {

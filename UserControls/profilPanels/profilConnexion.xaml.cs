@@ -81,6 +81,7 @@ namespace projet23_Station_météo_WPF.UserControls.profilPanels
         }
         public void getConnexction(string login, string password)
         {
+            loadingBar.start(false, true);
             try
             {
                 Dictionary<string, string> jsonData = new Http().getCompte(login, password).Result;
@@ -95,6 +96,7 @@ namespace projet23_Station_météo_WPF.UserControls.profilPanels
                     }), DispatcherPriority.Render);
 
                     connexionInProgress = false;
+                    loadingBar.stop();
                     return;
                 }
 
@@ -114,6 +116,7 @@ namespace projet23_Station_météo_WPF.UserControls.profilPanels
                 Dispatcher.BeginInvoke(new profilPanel.refreshDelegate(profilPanel.refresh), DispatcherPriority.Render);
             } catch(Exception ex){}
             connexionInProgress = false;
+            loadingBar.stop();
         }
         private void stayConnectedClick(object sender, RoutedEventArgs e)
         {

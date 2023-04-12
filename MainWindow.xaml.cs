@@ -132,6 +132,10 @@ namespace projet23_Station_météo_WPF
                 disabledButtonOpenMenu = false;
             }
         }
+        private void loadingAnnul(object sender, RoutedEventArgs e)
+        {
+            loadingBar.cancellation();
+        }
         /*private void previsionButton_Click(object sender, RoutedEventArgs e)
         {
             CloseAllPanels(sender);

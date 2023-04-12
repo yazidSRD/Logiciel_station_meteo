@@ -67,9 +67,17 @@
                 </Grid>
             </Button>
         </Grid>
-        <Grid x:Name="WindowView" RenderTransformOrigin="1,0" Margin="50,0,0,0" Background="Black"/>
-        <Grid Background="#7FFFFFFF" Visibility="Hidden" Panel.ZIndex="2">
-            <ProgressBar x:Name="progressBar" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="200" Margin="0,75,0,0"/>
+        <Grid x:Name="WindowView" Margin="50,0,0,0" Background="Black"/>
+        <Grid x:Name="loadingUi" Background="#7FFFFFFF" Visibility="Hidden" Panel.ZIndex="2">
+            <ProgressBar HorizontalAlignment="Center" Height="20" VerticalAlignment="Center" Width="200" Margin="0,25,0,0"/>
+            <Image HorizontalAlignment="Right" Height="50" VerticalAlignment="Bottom" Width="50" Source="images/loading.png" Margin="0,0,20,20" RenderTransformOrigin=".5,.5">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="0" />
+                </Image.RenderTransform>
+            </Image>
+            <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="conversion en cours" VerticalAlignment="Center" FontSize="24" Margin="0,0,0,50"/>
+            <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="56" Panel.ZIndex="-1" Margin="0,0,17,17" VerticalAlignment="Bottom" Width="56"/>
+            <Button Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Width="30" Margin="0,10,10,0" FontSize="16" BorderBrush="{x:Null}" Background="#FFD43333" Height="30" Click="loadingAnnul"/>
         </Grid>
     </Grid>
 </Window>

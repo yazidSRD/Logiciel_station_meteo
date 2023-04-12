@@ -16,6 +16,7 @@ using System.Threading;
 using System.Windows.Forms;
 using LiveCharts.Maps;
 using System.Windows.Threading;
+using projet23_Station_météo_WPF.code;
 
 namespace projet23_Station_météo_WPF.UserControls
 {
@@ -136,6 +137,7 @@ namespace projet23_Station_météo_WPF.UserControls
         }
         void dataSearch(string startDate, string endDate, int index)
         {
+            loadingBar.start(false, true);
             List<Dictionary<string, string>> jsonData = new Http().get("WHERE DateHeureReleve BETWEEN '" + startDate + "' AND '" + endDate + "'").Result;
             if (jsonData == null) {
                 Dispatcher.BeginInvoke(new delegateMessageBox(() => {
@@ -703,6 +705,8 @@ namespace projet23_Station_météo_WPF.UserControls
                     userControl.graph.setValues(listData[userControls.Key], listDate);
                 }
             }*/
+
+            loadingBar.stop();
         }
     }
 }

@@ -61,6 +61,7 @@ namespace projet23_Station_météo_WPF.UserControls
                 Dispatcher.BeginInvoke(new refreshDelegate(() => refreshDataGridDelegate(jsonData)), DispatcherPriority.Render);
             }
             catch (Exception ex) { return; }
+            loadingBar.stop();
         }
         void refreshDataGridDelegate(List<Dictionary<string, string>> jsonData)
         {
@@ -68,6 +69,7 @@ namespace projet23_Station_météo_WPF.UserControls
         }
         void Button_Click_Request(object sender, RoutedEventArgs e)
         {
+            loadingBar.start(false, true);
             string sqlText = sql.Text;
             new Thread(() =>
             {
@@ -86,7 +88,7 @@ namespace projet23_Station_météo_WPF.UserControls
         }
         void downloadInToXML(object path)
         {
-            loadingBar.start();
+            loadingBar.start(true, true, "conversion en cours", true);
             Thread.Sleep(100);
             using (StreamWriter sw = File.CreateText((string)path))
             {
@@ -101,6 +103,10 @@ namespace projet23_Station_météo_WPF.UserControls
                 contenu = "";
                 foreach (Dictionary<string, string> item in dataGrid.Items)
                 {
+                    if (loadingBar.annul)
+                    {
+                        break;
+                    }
                     if (++x > 1)
                     {
                         sw.Write(contenu);
@@ -129,7 +135,11 @@ namespace projet23_Station_météo_WPF.UserControls
                 contenu = "</mesures>";
                 sw.Write(contenu);
             }
-
+            if (loadingBar.annul) 
+            try
+            {
+                File.Delete((string)path);
+            } catch (IOException ex) {}
             //Console.WriteLine("Le fichier texte a été créé avec succès et enregistré à l'emplacement suivant :\n" + (string)path);
             loadingBar.stop();
         }

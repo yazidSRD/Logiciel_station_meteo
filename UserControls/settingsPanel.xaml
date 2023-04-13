@@ -44,8 +44,8 @@
                 <Grid Margin="354,34,0,0" Visibility="Visible" HorizontalAlignment="Left" Width="100" Height="100" VerticalAlignment="Top">
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Vitesse du vent" VerticalAlignment="Top"/>
                     <ListBox x:Name="unit3" Tag="unitVvent" Margin="0,19,0,0">
-                        <CheckBox Content="Km/h"/>
                         <CheckBox Content="m/s"/>
+                        <CheckBox Content="Km/h"/>
                         <CheckBox Content="mph"/>
                         <CheckBox Content="nœuds(nd)"/>
                     </ListBox>

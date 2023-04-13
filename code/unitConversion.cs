@@ -30,14 +30,14 @@ namespace projet23_Station_météo_WPF.code
 
 
 
-                case "Km/h":
-                    return value;
                 case "m/s":
-                    return ConvertirKmHEnMS(value);
+                    return value;
+                case "Km/h":
+                    return ConvertirMSEnKmH(value);
                 case "mph":
-                    return ConvertirKmHEnMph(value);
+                    return ConvertirMSEnMph(value);
                 case "nd":
-                    return ConvertirKmHEnNoeuds(value);
+                    return ConvertirMSEnNoeuds(value);
 
 
 
@@ -110,24 +110,24 @@ namespace projet23_Station_météo_WPF.code
 
             return Convert.ToInt32(temperatureDeRosee);
         }
-        private Int32 ConvertirKmHEnMS(Int32 vitesseKmH)
+        private Int32 ConvertirMSEnKmH(Int32 vitesseMS)
         {
-            // Conversion en m/s
-            double vitesseMS = vitesseKmH / 3.6;
+            // Conversion en Km/h
+            double vitesseKmH = vitesseMS * 3.6;
 
-            return Convert.ToInt32(vitesseMS);
+            return Convert.ToInt32(vitesseKmH);
         }
-        private Int32 ConvertirKmHEnMph(Int32 vitesseKmH)
+        private Int32 ConvertirMSEnMph(Int32 vitesseMS)
         {
             // Conversion en mph
-            double vitesseMph = vitesseKmH / 1.609344;
+            double vitesseMph = vitesseMS * 2.23694;
 
             return Convert.ToInt32(vitesseMph); ;
         }
-        private Int32 ConvertirKmHEnNoeuds(Int32 vitesseKmH)
+        private Int32 ConvertirMSEnNoeuds(Int32 vitesseMS)
         {
             // Conversion en noeuds
-            double vitesseNoeuds = vitesseKmH / 1.852;
+            double vitesseNoeuds = vitesseMS * 1.94384;
 
             return Convert.ToInt32(vitesseNoeuds);
         }

@@ -42,6 +42,11 @@ namespace projet23_Station_météo_WPF.UserControls
             dataGrid.Columns[5].Header += "(" + (string)App.Current.Properties["unitPresAtmo"] + ")";
             dataGrid.Columns[6].Header += "(" + (string)App.Current.Properties["unitPluv"] + ")";
             dataGrid.Columns[7].Header += "(" + (string)App.Current.Properties["unitRaySol"] + ")";
+
+            DateTime yesterday = DateTime.Now.AddDays(-1);
+            string yesterdayFormatted = yesterday.ToString("yyyy-MM-dd HH:mm");
+
+            sql.Text = "WHERE DateHeureReleve > '" + yesterdayFormatted + "' ORDER BY DateHeureReleve DESC";
             Button_Click_Request(null, null);
         }
         void refreshDataGrid(string sqlText)

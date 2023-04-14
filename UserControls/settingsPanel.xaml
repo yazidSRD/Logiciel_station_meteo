@@ -83,7 +83,7 @@
             <Grid x:Name="gridSeuils" VerticalAlignment="Top" Margin="0,308,0,0" Cursor="">
                 <TextBlock HorizontalAlignment="Left" Margin="30,10,0,0" TextWrapping="Wrap" Text="Seuils" VerticalAlignment="Top"/>
                 <Rectangle Height="1" Margin="100,20,30,0" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
-                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Vitesse du vent(Km/h)" VerticalAlignment="Top" Margin="108,35,0,0"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Vitesse du vent(m/s)" VerticalAlignment="Top" Margin="108,35,0,0"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Temperature(°C)" VerticalAlignment="Top" Margin="234,34,0,0"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Pluviometrie(mm)" VerticalAlignment="Top" Margin="358,34,0,0"/>
                 <TextBox Tag="1;SeuilVitVent" LostKeyboardFocus="editSeuil_LostKeyboardFocus" PreviewTextInput="PreviewTextInput" x:Name="seuil1VitesseVent" Text="" VerticalAlignment="Top" Margin="108,56,0,0" HorizontalAlignment="Left" Width="100"/>

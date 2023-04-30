@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Importations de namespaces et classes externes
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ using System.Windows.Shapes;
 namespace projet23_Station_météo_WPF.UserControls
 {
     /// <summary>
-    /// Logique d'interaction pour infoBulle.xaml
+    /// Élément cliquable pour afficher plus d'information dans un message box
     /// </summary>
     public partial class infoBulle : System.Windows.Controls.UserControl
     {
@@ -25,6 +26,8 @@ namespace projet23_Station_météo_WPF.UserControls
         {
             InitializeComponent();
         }
+
+        // Lors du clic sur l'image, afficher une boîte de dialogue avec un message personnalisé
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Forms.MessageBox.Show(((string)this.Tag).Replace("\\n", "\n"), "informations", MessageBoxButtons.OK);

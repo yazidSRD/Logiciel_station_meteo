@@ -1,4 +1,5 @@
-﻿using LiveCharts;
+﻿// Importations de namespaces et classes externes
+using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Threading.Tasks;
 using System.Windows.Shapes;
-
-
 
 namespace projet23_Station_météo_WPF.code
 {

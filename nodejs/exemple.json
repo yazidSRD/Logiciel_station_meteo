@@ -1,0 +1,83 @@
+{
+    "end_device_ids": {
+        "device_id": "meteo-device",
+        "application_ids": {
+            "application_id": "station-meteo-loritz"
+        },
+        "dev_eui": "70B3D58FF102FED5",
+        "join_eui": "904E915000000002",
+        "dev_addr": "260B45F3"
+    },
+    "correlation_ids": [
+        "as:up:01GV5ZYN4FR5H8JGTPSH1R0ZT1",
+        "gs:conn:01GV5QRFNPG53WTBR8CF44PXRM",
+        "gs:up:host:01GV5QRFNTT61TKD6NRF98MPHS",
+        "gs:uplink:01GV5ZYMY16AMNS5VSNEY14EQ8",
+        "ns:uplink:01GV5ZYMY133AK5QJ8ZFGRWX1T",
+        "rpc:/ttn.lorawan.v3.GsNs/HandleUplink:01GV5ZYMY1W4GYC9V3E87ECQ9M",
+        "rpc:/ttn.lorawan.v3.NsAs/HandleUplink:01GV5ZYN4FAA78S8D3ET0CYPQM"
+    ],
+    "received_at": "2023-03-10T14:49:13.615364019Z",
+    "uplink_message": {
+        "session_key_id": "AYbLfgUINViITgE8LTy8TQ==",
+        "f_port": 2,
+        "f_cnt": 54,
+        "frm_payload": "CyEAABAbc/4CAABVASMAAAAAAAAAAgAkfmouLwCGAgfE",
+        "decoded_payload": {
+            "barTrend": "196.00",
+            "dayET": 0.05,
+            "dayRain": 0,
+            "forecastIcons": 7,
+            "outsideHumidity": 35,
+            "outsideTemperature": 24.78,
+            "pressure": 997.87,
+            "rainRate": 0,
+            "solarRadiation": 0,
+            "tenMinutesAvgWindSpeed": 0,
+            "undefined": null,
+            "uv": 0,
+            "windDirection": 341,
+            "windSpeed": 0
+        },
+        "rx_metadata": [
+            {
+                "gateway_ids": {
+                    "gateway_id": "multitech-gateway-stationmeteoloritz",
+                    "eui": "00800000A000C490"
+                },
+                "timestamp": 3187603,
+                "rssi": -44,
+                "channel_rssi": -44,
+                "snr": 9.8,
+                "uplink_token": "CjIKMAokbXVsdGl0ZWNoLWdhdGV3YXktc3RhdGlvbm1ldGVvbG9yaXR6EggAgAAAoADEkBCTx8IBGgwI6YatoAYQ49SCwwEguOz774v6AQ==",
+                "received_at": "2023-03-10T14:49:13.327615618Z"
+            }
+        ],
+        "settings": {
+            "data_rate": {
+                "lora": {
+                    "bandwidth": 125000,
+                    "spreading_factor": 7,
+                    "coding_rate": "4/5"
+                }
+            },
+            "frequency": "868100000",
+            "timestamp": 3187603
+        },
+        "received_at": "2023-03-10T14:49:13.409875353Z",
+        "consumed_airtime": "0.092416s",
+        "version_ids": {
+            "brand_id": "enginko",
+            "model_id": "mcf-lw06davk",
+            "hardware_version": "_unknown_hw_version_",
+            "firmware_version": "0.02.18",
+            "band_id": "EU_863_870"
+        },
+        "network_ids": {
+            "net_id": "000013",
+            "tenant_id": "ttn",
+            "cluster_id": "eu1",
+            "cluster_address": "eu1.cloud.thethings.network"
+        }
+    }
+}

@@ -72,9 +72,13 @@ namespace projet23_Station_météo_WPF.UserControls.mesuresUi
             List<Dictionary<string, string>> previsions = new Http().getPrevisions().Result;
 
             // Récupérer l'URL de l'illustration et la mettre à jour si elle existe
-            urlIllustration = null;
-            urlIllustration = previsions[0]["icon"];
-            if (urlIllustration != null) Dispatcher.BeginInvoke(new illustrationDelegate(refreshIllustration), System.Windows.Threading.DispatcherPriority.Render);
+            try
+            {
+                urlIllustration = null;
+                urlIllustration = previsions[0]["icon"];
+                if (urlIllustration != null) Dispatcher.BeginInvoke(new illustrationDelegate(refreshIllustration), System.Windows.Threading.DispatcherPriority.Render);
+            }
+            catch { }
 
             // Créer un dictionnaire avec les noms des contrôles et les objets correspondants
             Dictionary<string, List<dynamic>> listV = new Dictionary<string, List<dynamic>>()

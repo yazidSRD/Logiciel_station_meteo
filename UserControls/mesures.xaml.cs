@@ -77,7 +77,7 @@ namespace projet23_Station_météo_WPF.UserControls
             List<Dictionary<string, string>> jsonData = new Http().get("WHERE DateHeureReleve > '" + yesterdayFormatted + "' ORDER BY DateHeureReleve DESC").Result;
 
             // Vérification si les données ont été récupérées avec succès
-            if (jsonData == null) {
+            if (jsonData == null || jsonData.Count == 0) {
 
                 // Si la connexion au serveur a échoué, afficher un message d'erreur
                 Dispatcher.BeginInvoke(new delegateMessageBox(() => {

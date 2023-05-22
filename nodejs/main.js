@@ -1,12 +1,12 @@
 ﻿const mqtt = require('mqtt');
 const mysql = require('mysql2');
 
-const mqttHost = 'eu1.cloud.thethings.network';
-const mqttPort = 1883;
-const mqttTopic = 'v3/station-meteo-loritz@ttn/devices/station-meteo-mcf-lwws0-hloritz/up';
-const mqttClientId = 'aa5abc9f89ed4904a9d5c2aaed989b2d';
-const mqttUsername = 'station-meteo-loritz@ttn';
-const mqttPassword = 'NNSXS.YRUF5DSSUYP336C2L4Z2GVBVJLSF2XR372W2WSI.SVWEHL5SW4ZMLKYMF3BNFX2VJMMMOCNSXYEXSTTW7EV52PL5M6UA';
+const mqttHost = '';
+const mqttPort = 0;
+const mqttTopic = '';
+const mqttClientId = '';
+const mqttUsername = '';
+const mqttPassword = '';
 
 const mqttOptions = {
     host: mqttHost,

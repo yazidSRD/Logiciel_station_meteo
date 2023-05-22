@@ -39,7 +39,7 @@ namespace projet23_Station_météo_WPF.UserControls
             autoRefreshTh.Start();
 
             // Démarre la lecture de la vidéo dans le lecteur vidéo
-            videoPlayer.Play();
+            //videoPlayer.Play();
         }
 
         // Methode appelée lors du déchargement de l'élément
@@ -163,8 +163,8 @@ namespace projet23_Station_météo_WPF.UserControls
         private void LoopVideo(object sender, RoutedEventArgs e)
         {
             // On remet la vidéo au début et on la recommence
-            videoPlayer.Position = TimeSpan.Zero;
-            videoPlayer.Play();
+            //videoPlayer.Position = TimeSpan.Zero;
+            //videoPlayer.Play();
         }
     }
 }

@@ -6,8 +6,10 @@
              xmlns:local="clr-namespace:projet23_Station_météo_WPF.UserControls.mesuresUi"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="750" Unloaded="dell">
-    <Grid>
-        <MediaElement x:Name="videoPlayer" Source="./videos/Soleil.mp4" IsMuted="True" MediaEnded="LoopVideo" LoadedBehavior="Manual" StretchDirection="UpOnly" Stretch="UniformToFill" />
+    <Grid Background="#FFF9F6F7">
+        <!--
+            <MediaElement x:Name="videoPlayer" Source="./videos/Soleil.mp4" IsMuted="True" MediaEnded="LoopVideo" LoadedBehavior="Manual" StretchDirection="UpOnly" Stretch="UniformToFill" />
+        -->
         <Grid Width="Auto" MaxWidth="1200" SizeChanged="uiRefesh" x:Name="Gui">
             <Grid.Background>
                 <SolidColorBrush Color="#26FFFFFF" Opacity="1"/>

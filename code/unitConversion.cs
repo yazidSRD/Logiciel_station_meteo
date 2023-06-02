@@ -9,6 +9,17 @@ namespace projet23_Station_météo_WPF.code
 {
     public class unitConversion
     {
+
+        private Int32 ConvertToInt32(double N)
+        {
+            try {
+                return Convert.ToInt32(N);
+            } catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
         public Int32 Conversion(Int32 value, string unit, Dictionary<string, Int32> values)
         {
             switch (unit)
@@ -77,11 +88,11 @@ namespace projet23_Station_météo_WPF.code
         }
         private Int32 CelsiusToFahrenheit(Int32 celsius)
         {
-            return Convert.ToInt32(celsius * 1.8f + 32f);
+            return ConvertToInt32(celsius * 1.8f + 32f);
         }
         private Int32 CelsiusToKelvin(Int32 celsius)
         {
-            return Convert.ToInt32(celsius + 273.15f);
+            return ConvertToInt32(celsius + 273.15f);
         }
         private Int32 VaporDensity(Int32 humidity, Int32 temperature, Int32 pressure)
         {
@@ -97,7 +108,7 @@ namespace projet23_Station_météo_WPF.code
             // Correction pour la pression atmosphérique
             double correctionFactor = pressure / 101325;
             vaporDensity = vaporDensity * correctionFactor;
-            return Convert.ToInt32(vaporDensity*1000);
+            return ConvertToInt32(vaporDensity*1000);
         }
         private Int32 PointDeRosee(Int32 humiditeRelative, Int32 temperature)
         {
@@ -109,66 +120,66 @@ namespace projet23_Station_météo_WPF.code
             double alpha = ((a * temperature) / (b + temperature)) + Math.Log(humiditeRelative / 100.0);
             double temperatureDeRosee = (b * alpha) / (a - alpha);
 
-            return Convert.ToInt32(temperatureDeRosee);
+            return ConvertToInt32(temperatureDeRosee);
         }
         private Int32 ConvertirMSEnKmH(Int32 vitesseMS)
         {
             // Conversion en Km/h
             double vitesseKmH = vitesseMS * 3.6;
 
-            return Convert.ToInt32(vitesseKmH);
+            return ConvertToInt32(vitesseKmH);
         }
         private Int32 ConvertirMSEnMph(Int32 vitesseMS)
         {
             // Conversion en mph
             double vitesseMph = vitesseMS * 2.23694;
 
-            return Convert.ToInt32(vitesseMph); ;
+            return ConvertToInt32(vitesseMph); ;
         }
         private Int32 ConvertirMSEnNoeuds(Int32 vitesseMS)
         {
             // Conversion en noeuds
             double vitesseNoeuds = vitesseMS * 1.94384;
 
-            return Convert.ToInt32(vitesseNoeuds);
+            return ConvertToInt32(vitesseNoeuds);
         }
         private Int32 ConvertirhPaEnAtm(Int32 hpa)
         {
             const double atmPerHpa = 0.000986923; // Nombre d'atmosphères par hPa
-            return Convert.ToInt32(hpa * atmPerHpa);
+            return ConvertToInt32(hpa * atmPerHpa);
         }
         private Int32 ConvertirhPaEnPsi(Int32 hpa)
         {
             const double barPerHpa = 0.001; // Nombre de bars par hPa
-            return Convert.ToInt32(hpa * barPerHpa);
+            return ConvertToInt32(hpa * barPerHpa);
         }
         private Int32 ConvertirhPaEnBar(Int32 pressionPa)
         {
             // Conversion en bars
             double pressionBar = pressionPa / 100000.0;
 
-            return Convert.ToInt32(pressionBar);
+            return ConvertToInt32(pressionBar);
         }
         private Int32 ConvertirMmEnCm(Int32 pluviometrieMm)
         {
             // Conversion en cm
             double pluviometrieCm = pluviometrieMm / 10.0;
 
-            return Convert.ToInt32(pluviometrieCm);
+            return ConvertToInt32(pluviometrieCm);
         }
         private Int32 ConvertirMmEnIn(Int32 pluviometrieMm)
         {
             // Conversion en in
             double pluviometrieIn = pluviometrieMm / 25.4;
 
-            return Convert.ToInt32(pluviometrieIn);
+            return ConvertToInt32(pluviometrieIn);
         }
         private Int32 ConvertirMmEnLm2(Int32 pluviometrieMm)
         {
             // Conversion en L/m²
             double pluviometrieLm2 = pluviometrieMm * 0.1;
 
-            return Convert.ToInt32(pluviometrieLm2);
+            return ConvertToInt32(pluviometrieLm2);
         }
         private Int32 RadiationToUV(Int32 radiation)
         {
@@ -179,11 +190,11 @@ namespace projet23_Station_météo_WPF.code
             // Calcul de l'indice UV approximatif
             double uv = a * radiation + b;
 
-            return Convert.ToInt32(uv);
+            return ConvertToInt32(uv);
         }
         private Int32 RadiationToKW(Int32 radiation)
         {
-            return Convert.ToInt32(radiation / 1000.0);
+            return ConvertToInt32(radiation / 1000.0);
         }
         private Int32 RadiationToBtu(Int32 radiation)
         {
@@ -193,7 +204,7 @@ namespace projet23_Station_météo_WPF.code
             // Conversion de W/ft² en Btu/h.ft²
             double btu = radiation_ft2 * 3.413;
 
-            return Convert.ToInt32(btu);
+            return ConvertToInt32(btu);
         }
     }
 }

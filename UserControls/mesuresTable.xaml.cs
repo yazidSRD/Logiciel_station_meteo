@@ -60,7 +60,7 @@ namespace projet23_Station_météo_WPF.UserControls
             try
             {
                 // Appel à la méthode get() de la classe Http pour récupérer toutes les données du serveur
-                List<Dictionary<string, string>> jsonData = new Http().get("").Result;
+                List<Dictionary<string, string>> jsonData = new Http().get("ORDER BY DateHeureReleve DESC").Result;
 
                 // Si la réponse est nulle, afficher un message d'erreur et arrêter le chargement
                 if (jsonData == null) {
@@ -77,7 +77,8 @@ namespace projet23_Station_météo_WPF.UserControls
                 // Mettre à jour le DataGrid en invoquant la méthode refreshDataGridDelegate avec les données récupérées
                 Dispatcher.BeginInvoke(new refreshDelegate(() => refreshDataGridDelegate(jsonData)), DispatcherPriority.Render);
             }
-            catch (Exception ex) { return; }
+            catch (Exception ex) {
+                Console.Write(ex);}
             
             // Arrêter le chargement
             loadingBar.stop();
@@ -93,7 +94,7 @@ namespace projet23_Station_météo_WPF.UserControls
         void Button_Click_Request(object sender, RoutedEventArgs e)
         {
             // On lance la barre de chargement
-            loadingBar.start(false, true);
+            loadingBar.start(true, true, "téléchargement");
 
             // Démarrage d'un nouveau thread pour effectuer des opérations de réseau
             new Thread(() =>

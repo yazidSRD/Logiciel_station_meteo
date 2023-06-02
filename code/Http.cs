@@ -76,9 +76,18 @@ namespace projet23_Station_météo_WPF.UserControls
                 return jsonData;
             }
 
+            int x = 0;
+            int c = jsonData.Count;
+            int last = 0;
             // Conversion des unités de mesure des données récupérées
             foreach (Dictionary<string, string> data in jsonData)
             {
+                if (x++ * 100 / c - last > 4)
+                {
+                    last = x++ * 100 / c;
+                    loadingBar.refresh(last);
+                    Console.WriteLine(last);
+                }
                 Dictionary<string, Int32> values = new Dictionary<string, Int32>();
                 values.Add("Temperature", Convert.ToInt32(convertToIntString(data["Temperature"])));
                 values.Add("Hygrometrie", Convert.ToInt32(convertToIntString(data["Hygrometrie"])));
@@ -86,7 +95,6 @@ namespace projet23_Station_météo_WPF.UserControls
                 values.Add("PressionAtmospherique", Convert.ToInt32(convertToIntString(data["PressionAtmospherique"])));
                 values.Add("Pluviometre", Convert.ToInt32(convertToIntString(data["Pluviometre"])));
                 values.Add("RayonnementSolaire", Convert.ToInt32(convertToIntString(data["RayonnementSolaire"])));
-
 
                 // Conversion des unités de mesure pour chaque type de donnée
                 data["Temperature"] = new unitConversion().Conversion(values["Temperature"], (string)App.Current.Properties["unitTemp"], values).ToString();

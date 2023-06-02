@@ -136,11 +136,11 @@
     <comment>localhost</comment>
   </data>
   <data name="seuilLvl1" xml:space="preserve">
-    <value>30;30;30;30</value>
+    <value>11;0;10;70</value>
     <comment>{ "vitesse du vent", "temperature", "pluviometre", "rayonnement solaire" }</comment>
   </data>
   <data name="seuilLvl2" xml:space="preserve">
-    <value>60;60;60;60</value>
+    <value>16;35;50;80</value>
     <comment>{ "vitesse du vent", "temperature", "pluviometre", "rayonnement solaire" }</comment>
   </data>
   <data name="unitDvent" xml:space="preserve">

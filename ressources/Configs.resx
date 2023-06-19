@@ -132,7 +132,7 @@
     <value />
   </data>
   <data name="serverIp" xml:space="preserve">
-    <value>192.168.1.223</value>
+    <value>stationmeteo.loritz.fr</value>
     <comment>localhost</comment>
   </data>
   <data name="seuilLvl1" xml:space="preserve">

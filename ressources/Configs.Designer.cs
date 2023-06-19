@@ -97,7 +97,7 @@ namespace projet23_Station_météo_WPF.ressources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 192.168.1.223.
+        ///   Recherche une chaîne localisée semblable à stationmeteo.loritz.fr.
         /// </summary>
         internal static string serverIp {
             get {

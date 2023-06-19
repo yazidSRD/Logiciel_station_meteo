@@ -26,7 +26,7 @@ namespace projet23_Station_météo_WPF.UserControls
             List<Dictionary<string, string>> jsonData = null;
 
             // Création d'un objet HttpRequestMessage avec la méthode HTTP GET et l'URL de l'API cible
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/getValeurs");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://{((string)App.Current.Properties["serverIp"])}/LogicielApi/api/getValeurs.php");
 
             // Ajout de la requête SQL dans l'en-tête de la demande
             requestMessage.Headers.Add("sql", sql);
@@ -63,6 +63,7 @@ namespace projet23_Station_météo_WPF.UserControls
 
                         // Conversion de la réponse de JSON en une liste de dictionnaires clé-valeur
                         string stringData = await response.Content.ReadAsStringAsync();
+
                         jsonData = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(stringData);
                     }
                 }
@@ -135,7 +136,7 @@ namespace projet23_Station_météo_WPF.UserControls
             List<Dictionary<string, string>> jsonData = null;
 
             // Création d'un nouvel objet HttpRequestMessage avec la méthode HTTP GET et une URL
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/getDate");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://{((string)App.Current.Properties["serverIp"])}/LogicielApi/api/getDate.php");
 
             // Ajout du paramètre minOrMax à la collection Headers de l'objet requestMessage
             requestMessage.Headers.Add("minOrMax", minOrMax);
@@ -176,7 +177,7 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<Dictionary<string, string>> getCompte(string login, string password)
         {
             Dictionary<string, string> jsonData = null;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/connexion");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://{((string)App.Current.Properties["serverIp"])}/LogicielApi/api/connexion.php");
             requestMessage.Headers.Add("login", login);
             requestMessage.Headers.Add("password", password);
 
@@ -198,7 +199,7 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<List<Dictionary<string, string>>> getAllCompte(string login, string password)
         {
             List<Dictionary<string, string>> jsonData = null;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/getComptes");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://{((string)App.Current.Properties["serverIp"])}/LogicielApi/api/getComptes.php");
             requestMessage.Headers.Add("login", login);
             requestMessage.Headers.Add("password", password);
 
@@ -218,7 +219,7 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<bool> editCompte(string login, string password, Dictionary<string, string> profil)
         {
             bool saved = false;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/editCompte");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://{((string)App.Current.Properties["serverIp"])}/LogicielApi/api/editCompte.php");
 
             // Ajout des headers dans la requête pour l'authentification et les informations de profil
             requestMessage.Headers.Add("login", login);
@@ -248,7 +249,7 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<bool> newCompte(string login, string password, Dictionary<string, string> profil)
         {
             bool saved = false;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/newCompte");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://{((string)App.Current.Properties["serverIp"])}/LogicielApi/api/newCompte.php");
 
             // Ajout des headers dans la requête pour l'authentification et les informations de profil
             requestMessage.Headers.Add("login", login);
@@ -277,7 +278,7 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<bool> deleteCompte(string login, string password, string id)
         {
             bool saved = false;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/deleteCompte");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://{((string)App.Current.Properties["serverIp"])}/LogicielApi/api/deleteCompte.php");
 
             // Ajoute le login de l'utilisateur à la requête
             requestMessage.Headers.Add("login", login);
@@ -302,7 +303,7 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<bool> editSeuil(string login, string password, string niv, string target, int var)
         {
             bool saved = false;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/editSeuil");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://{((string)App.Current.Properties["serverIp"])}/LogicielApi/api/editSeuil.php");
 
             // Ajoute le login de l'utilisateur
             requestMessage.Headers.Add("login", login);
@@ -331,7 +332,7 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<List<string>> getSeuils()
         {
             List<string> saved = null;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/getSeuils");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://{((string)App.Current.Properties["serverIp"])}/LogicielApi/api/getSeuils.php");
 
             try
             {
@@ -356,7 +357,7 @@ namespace projet23_Station_météo_WPF.UserControls
         public async Task<List<Dictionary<string, string>>> getPrevisions()
         {
             List<Dictionary<string, string>> saved = null;
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://{((string)App.Current.Properties["serverIp"])}/projet2023stationmeteo/api/getPrevisions");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://{((string)App.Current.Properties["serverIp"])}/LogicielApi/api/getPrevisions.php");
 
             try
             {

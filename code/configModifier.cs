@@ -57,7 +57,9 @@ namespace projet23_Station_météo_WPF.code
                             }
                         }
                     }
-                    catch (Exception e) { };
+                    catch (Exception e) {
+                        Console.WriteLine(e);
+                    };
                 }
             }).Start();
 

@@ -73,6 +73,7 @@ namespace projet23_Station_météo_WPF.UserControls
                     return jsonData;
                 }
             } catch(Exception ex) {
+                Console.WriteLine(ex);
                 // En cas d'erreur, retourne la variable jsonData (qui est null)
                 return jsonData;
             }
@@ -149,6 +150,7 @@ namespace projet23_Station_météo_WPF.UserControls
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 // Si une exception est levée, renvoie une chaîne vide
                 return "";
             }
@@ -168,6 +170,7 @@ namespace projet23_Station_météo_WPF.UserControls
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 // Si une exception est levée, renvoie une chaîne vide
                 return "";
             }
@@ -192,7 +195,10 @@ namespace projet23_Station_météo_WPF.UserControls
                 return jsonData;
 
                 // Si une erreur se produit, on renvoie null
-            } catch (Exception ex) { return jsonData; }
+            } catch (Exception ex) { 
+                Console.WriteLine(ex);
+                return jsonData; 
+            }
         }
 
         // Récupérer tous les comptes
@@ -242,7 +248,10 @@ namespace projet23_Station_météo_WPF.UserControls
                     saved = bool.Parse(stringData);
                 }
                 return saved;
-            } catch (Exception ex) { return saved; }
+            } catch (Exception ex) { 
+                Console.WriteLine(ex);
+                return saved;
+            }
         }
 
         // Méthode pour créer un nouveau compte
@@ -271,7 +280,10 @@ namespace projet23_Station_météo_WPF.UserControls
                     saved = bool.Parse(stringData);
                 }
                 return saved;
-            } catch (Exception ex) { return saved; }
+            } catch (Exception ex) { 
+                Console.WriteLine(ex);
+                return saved;
+            }
         }
 
         // Cette méthode supprime un compte
@@ -296,7 +308,10 @@ namespace projet23_Station_météo_WPF.UserControls
                     saved = bool.Parse(stringData);
                 }
                 return saved;
-            } catch(Exception ex) { return saved; }
+            } catch(Exception ex) {
+                Console.WriteLine(ex);
+                return saved;
+            }
         }
 
         // Cette méthode permet de modifier les seuils
@@ -325,7 +340,10 @@ namespace projet23_Station_météo_WPF.UserControls
                     saved = bool.Parse(stringData);
                 }
                 return saved;
-            } catch(Exception ex) { return saved; }
+            } catch(Exception ex) {
+                Console.WriteLine(ex);
+                return saved;
+            }
         }
 
         // Cette méthode permet de récupérer les seuils de l'API
@@ -350,7 +368,10 @@ namespace projet23_Station_météo_WPF.UserControls
                 }
                 return saved;
             }
-            catch (Exception ex) { return saved; }
+            catch (Exception ex) { 
+                Console.WriteLine(ex);
+                return saved;
+            }
         }
 
         // Cette méthode permet de récupérer les prévisions météorologiques de l'API
@@ -375,7 +396,10 @@ namespace projet23_Station_météo_WPF.UserControls
                 }
                 return saved;
             }
-            catch (Exception ex) { return saved; }
+            catch (Exception ex) { 
+                Console.WriteLine(ex);
+                return saved;
+            }
         }
     }
 }

@@ -188,7 +188,9 @@ namespace projet23_Station_météo_WPF.UserControls
             try
             {
                 File.Delete((string)path);
-            } catch (IOException ex) {}
+            } catch (IOException ex) {
+                Console.WriteLine(ex);
+            }
 
             // Arrêter la barre de progression
             loadingBar.stop();

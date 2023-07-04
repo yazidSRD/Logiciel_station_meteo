@@ -16,6 +16,7 @@ namespace projet23_Station_météo_WPF.code
                 return Convert.ToInt32(N);
             } catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return 0;
             }
         }

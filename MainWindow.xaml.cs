@@ -97,7 +97,9 @@ namespace projet23_Station_météo_WPF
             {
                 // Effacement du contenu de la zone de visualisation
                 WindowView.Children.Clear();
-            } catch (Exception ex) { };
+            } catch (Exception ex) {
+                Console.WriteLine(ex);
+            };
 
             // Parcours de tous les boutons du menu pour changer leur couleur
             foreach (Button button in BorderMenu.Children.OfType<Button>())

@@ -159,7 +159,9 @@ namespace projet23_Station_météo_WPF.UserControls.profilPanels
                 // On récupère le panneau de profil et on actualise l'affichage
                 profilPanel profilPanel = (profilPanel)((System.Windows.FrameworkElement)this.Parent).Parent;
                 Dispatcher.BeginInvoke(new profilPanel.refreshDelegate(profilPanel.refresh), DispatcherPriority.Render);
-            } catch(Exception ex){}
+            }  catch (Exception e) {
+                Console.WriteLine(e);
+            }
 
             // On indique que la connexion n'est plus en cours et on arrête le chargement
             connexionInProgress = false;

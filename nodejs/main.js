@@ -1,6 +1,8 @@
-﻿const mqtt = require('mqtt');
+﻿// importation des bibliothèque
+const mqtt = require('mqtt');
 const mysql = require('mysql2');
 
+// configuration du mqtt
 const mqttHost = '';
 const mqttPort = 0;
 const mqttTopic = '';
@@ -16,15 +18,11 @@ const mqttOptions = {
     password: mqttPassword
 };
 
-//const mysqlHost = '192.168.1.223';
-//const mysqlUser = 'Application';
-//const mysqlPassword = 'stationmeteo';
-//const mysqlDatabase = 'station_meteo';
-
-const mysqlHost = 'localhost';
-const mysqlUser = 'root';
+// configuration du MySQL
+const mysqlHost = '';
+const mysqlUser = '';
 const mysqlPassword = '';
-const mysqlDatabase = 'station_meteo';
+const mysqlDatabase = '';
 
 const mysqlOptions = {
     host: mysqlHost,
@@ -35,27 +33,31 @@ const mysqlOptions = {
 
 const mqttClient = mqtt.connect(mqttOptions);
 
+// Événement lors de la connexion du mqtt
 mqttClient.on('connect', () => {
     console.log(`Connected to MQTT broker at ${mqttHost}:${mqttPort}`);
     mqttClient.subscribe(mqttTopic);
 });
 
+// Événement lors de la réception d'un message
 mqttClient.on('message', (topic, message) => {
     console.log(`----------------------------------------------------------------------`);
     console.log(`Received message on topic ${topic}`);
 
+	// conversion du string en JSON
     var data = JSON.parse(message);
     console.log(`-------`);
     console.log(data);
 
+	// date de réception
     const date = new Date(data.received_at);
     const formattedDate = `${date.getUTCFullYear()}-${(date.getUTCMonth() + 1).toString().padStart(2, '0')}-${date.getUTCDate().toString().padStart(2, '0')} ${date.getUTCHours().toString().padStart(2, '0')}:${date.getUTCMinutes().toString().padStart(2, '0')}:${date.getUTCSeconds().toString().padStart(2, '0')}.${date.getUTCMilliseconds().toString().padStart(6, '0')}`;
 
+	// donnée de la station météo
     data = data.uplink_message.decoded_payload
     
     console.log(`-------`);
     console.log(`DateHeureReleve = auto`);
-    //console.log(`DateHeureReleve = ${formattedDate}`);
     console.log(`Temperature = ${data.outsideTemperature}`);
     console.log(`Hygrometrie = ${data.outsideHumidity}`);
     console.log(`VitesseVent = ${data.windSpeed}`);
@@ -65,6 +67,7 @@ mqttClient.on('message', (topic, message) => {
     console.log(`RayonnementSolaire = ${data.solarRadiation}`);
     console.log(`-------`);
 
+	// démarrage du mysql
     const connection = mysql.createConnection(mysqlOptions);
     connection.connect((err) => {
         if (err) {
@@ -75,6 +78,7 @@ mqttClient.on('message', (topic, message) => {
         console.log('Connecté à la base de données MySQL');
 		console.log(`-------`);
 
+		// envoie des données
         connection.query(
             'INSERT INTO relevemeteo (Temperature, Hygrometrie, VitesseVent, DirectionVent, PressionAtmospherique, Pluviometre, RayonnementSolaire) VALUES ( ?, ?, ?, ?, ?, ?, ?)',
             [data.outsideTemperature, data.outsideHumidity, data.windSpeed, data.windDirection, data.pressure, data.rainRate, data.solarRadiation],
